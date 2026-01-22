@@ -12,7 +12,9 @@ class Background {
         this.pattern = null;
         this.image.onload = () => {
             this.pattern = ctx.createPattern(this.image, "repeat");
+            this.loaded = true;
         };
+        this.loaded = false;
     }
 
     draw() {
@@ -257,8 +259,43 @@ class Game {
         this.input.keys.clear();
         requestAnimationFrame(this.frame);
     }
+
+    start() {
+        this.resizeCanvas();
+
+        const showBg = () => {
+            if (this.bg.loaded) this.bg.draw();
+            else setTimeout(showBg, 100);
+
+            const centerX = canvas.width / 2;
+            const centerY = canvas.height / 2;
+
+            ctx.font = `bold 20px "JetBrains Mono", monospace`;
+            ctx.fillStyle = "#cdd6f4";
+            ctx.textAlign = "center";
+            ctx.fillText("Welcome to", centerX-145,
+                centerY-80);
+
+            ctx.font = `bold 100px "JetBrains Mono", monospace`;
+            ctx.fillStyle = "#cdd6f4";
+            ctx.textAlign = "center";
+            ctx.fillText("SLITHER", centerX,
+                centerY+20);
+
+            ctx.font = `bold 30px "JetBrains Mono", monospace`;
+            ctx.fillStyle = "#cdd6f4";
+            ctx.textAlign = "center";
+            ctx.fillText("Press any key to start.", centerX,
+                centerY + 80);
+        }
+        showBg();
+
+
+        window.addEventListener("keydown", () => {
+            requestAnimationFrame(game.frame);
+        }, { once: true });
+    }
 }
 
 window.game = new Game();
-game.resizeCanvas();
-requestAnimationFrame(game.frame);
+game.start();

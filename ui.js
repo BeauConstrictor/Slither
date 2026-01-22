@@ -24,8 +24,8 @@ class UserInterface {
 
   draw() {
     const centerX = canvas.width / 2;
-
     const centerY = canvas.height / 2;
+
     let text = ``;
 
     const instantFps = 1 / this.game.dt;
@@ -67,12 +67,10 @@ class UserInterface {
       ctx.font = `bold 50px "JetBrains Mono", monospace`;
       ctx.fillStyle = "#cdd6f4";
       ctx.textAlign = "center";
-      ctx.fillText("GAME OVER", centerX,
-        centerY);
+      ctx.fillText("GAME OVER", centerX, centerY);
 
       ctx.font = `bold 20px "JetBrains Mono", monospace`;
-      ctx.fillText("Press any key...", centerX,
-        centerY + 40);
+      ctx.fillText("Press any key...", centerX, centerY + 40);
     } else if (this.game.paused) {
       ctx.fillStyle = "#cdd6f4";
       ctx.fillRect(
