@@ -84,7 +84,7 @@ class Wall {
 
         ctx.save();
 
-        ctx.fillStyle = "#fdf6e3";
+        ctx.fillStyle = "#11111b";
         ctx.beginPath();
         ctx.rect(0, 0, canvas.width, canvas.height);
 
@@ -289,21 +289,22 @@ class Game {
 
             ctx.font = `bold 20px "JetBrains Mono", monospace`;
             ctx.fillStyle = "#cdd6f4";
-            ctx.textAlign = "center";
-            ctx.fillText("Welcome to", centerX - 145,
-                centerY - 80);
+            ctx.textAlign = "left";
+            ctx.fillText("Welcome to", centerX - 200,
+                centerY - 70);
 
             ctx.font = `bold 100px "JetBrains Mono", monospace`;
             ctx.fillStyle = "#cdd6f4";
             ctx.textAlign = "center";
             ctx.fillText("SLITHER", centerX,
-                centerY + 20);
+                centerY + 10);
 
-            ctx.font = `bold 30px "JetBrains Mono", monospace`;
+            ctx.font = `bold 24px "JetBrains Mono", monospace`;
             ctx.fillStyle = "#cdd6f4";
-            ctx.textAlign = "center";
-            ctx.fillText("Press ENTER to start...", centerX,
-                centerY + 80);
+            ctx.textAlign = "left";
+            ctx.fillText("Press       to start...", centerX-203,
+                centerY + 85);
+            drawKey(ctx, centerX-118, centerY+67, "Enter", 75);
 
             bgFrame += 1;
             setTimeout(showBg, 48);
