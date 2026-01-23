@@ -103,6 +103,10 @@ class Game {
         let gameStarted = false;
         let bgFrame = 0;
         let lastTime;
+        const titleL = new Image();
+        titleL.src = 'assets/title-l.png';
+        let titleLLoaded = false;
+        titleL.onload = () => titleLLoaded = true;
 
         const showBg = () => {
             if (gameStarted) return;
@@ -114,21 +118,28 @@ class Game {
             ctx.font = `bold 20px "JetBrains Mono", monospace`;
             ctx.fillStyle = "#cdd6f4";
             ctx.textAlign = "left";
-            ctx.fillText("Welcome to", centerX - 200,
+            ctx.fillText("Welcome to", centerX - 190,
                 centerY - 78);
 
-            ctx.font = `bold 100px "JetBrains Mono", monospace`;
+            ctx.font = `bold 100px "Atma", monospace`;
             ctx.fillStyle = "#cdd6f4";
             ctx.textAlign = "center";
-            ctx.fillText("SLITHER", centerX,
-                centerY+3.2);
+            ctx.fillText("S  ITHER", centerX,
+                centerY + 3.2);
+
+            if (titleLLoaded) {
+                const scale = 0.5;
+                ctx.drawImage(titleL,
+                    centerX-270, centerY-53,
+                    titleL.width*scale, titleL.height*scale*0.8);
+            }
 
             ctx.font = `bold 24px "JetBrains Mono", monospace`;
             ctx.fillStyle = "#cdd6f4";
             ctx.textAlign = "left";
-            ctx.fillText("Press       to play.", centerX - 203,
-                centerY + 75);
-            drawKey(ctx, centerX - 118, centerY + 57, "Enter", 75);
+            ctx.fillText("Press       to play.", centerX - 190,
+                centerY + 60);
+            drawKey(ctx, centerX - 105, centerY + 42, "Enter", 75);
 
             bgFrame += 1;
             setTimeout(showBg, 48);

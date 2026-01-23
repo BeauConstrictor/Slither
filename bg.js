@@ -5,11 +5,11 @@ class Background {
         this.image = new Image();
         this.image.src = TILE;
         this.pattern = null;
+        this.loaded = false;
         this.image.onload = () => {
             this.pattern = ctx.createPattern(this.image, "repeat");
             this.loaded = true;
         };
-        this.loaded = false;
     }
 
     draw(pos) {
