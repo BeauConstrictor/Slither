@@ -285,15 +285,20 @@ class Game {
             ctx.font = `bold 30px "JetBrains Mono", monospace`;
             ctx.fillStyle = "#cdd6f4";
             ctx.textAlign = "center";
-            ctx.fillText("Press any key to start.", centerX,
+            ctx.fillText("Press ENTER to start...", centerX,
                 centerY + 80);
         }
         showBg();
 
 
-        window.addEventListener("keydown", () => {
-            requestAnimationFrame(game.frame);
-        }, { once: true });
+        const startGame = (event) => {
+            if (event.key == "Enter") {
+                requestAnimationFrame(game.frame);
+            } else {
+                window.addEventListener("keydown", startGame, { once: true });
+            }
+        }
+        window.addEventListener("keydown", startGame, { once: true });
     }
 }
 
