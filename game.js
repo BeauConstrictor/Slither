@@ -121,7 +121,7 @@ class Game {
             ctx.fillStyle = "#cdd6f4";
             ctx.textAlign = "center";
             ctx.fillText("SLITHER", centerX,
-                centerY);
+                centerY+4.5);
 
             ctx.font = `bold 24px "JetBrains Mono", monospace`;
             ctx.fillStyle = "#cdd6f4";
