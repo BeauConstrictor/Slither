@@ -291,20 +291,20 @@ class Game {
             ctx.fillStyle = "#cdd6f4";
             ctx.textAlign = "left";
             ctx.fillText("Welcome to", centerX - 200,
-                centerY - 70);
+                centerY - 78);
 
             ctx.font = `bold 100px "JetBrains Mono", monospace`;
             ctx.fillStyle = "#cdd6f4";
             ctx.textAlign = "center";
             ctx.fillText("SLITHER", centerX,
-                centerY + 10);
+                centerY);
 
             ctx.font = `bold 24px "JetBrains Mono", monospace`;
             ctx.fillStyle = "#cdd6f4";
             ctx.textAlign = "left";
-            ctx.fillText("Press       to start...", centerX-203,
-                centerY + 85);
-            drawKey(ctx, centerX-118, centerY+67, "Enter", 75);
+            ctx.fillText("Press       to play.", centerX-203,
+                centerY + 75);
+            drawKey(ctx, centerX-118, centerY+57, "Enter", 75);
 
             bgFrame += 1;
             setTimeout(showBg, 48);
