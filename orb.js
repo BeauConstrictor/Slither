@@ -49,7 +49,7 @@ class Orb {
 
             if (snake === this.game.player) {
                 this.game.ui.lengthSizeBoost += 5;
-                playSfx("click");
+                playSfx("hitHurt");
             }
         }
     }
