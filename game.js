@@ -136,16 +136,17 @@ class Game {
             ctx.font = `bold 20px "JetBrains Mono", monospace`;
             ctx.fillStyle = "#cdd6f4";
             ctx.textAlign = "left";
-            ctx.fillText("Welcome to", centerX - 190,
-                centerY - 25);
-
+            
             const rotation = Math.sin(titleFrame * TITLE_ANIM_SPEED) * TITLE_WOBBLE;
             const scale = 1 + Math.sin(titleFrame * TITLE_ANIM_SPEED + Math.PI / 2) * TITLE_SCALE;
-
+            
             ctx.save();
             ctx.translate(centerX, centerY);
-            ctx.rotate(rotation);
+            
+            ctx.fillText("Welcome to", -190, -25);
+            
             ctx.scale(scale, scale);
+            ctx.rotate(rotation);
 
             ctx.font = `bold 100px "Atma", monospace`;
             ctx.fillStyle = "#cdd6f4";

@@ -65,8 +65,8 @@ const BOT_AGGRESSION = 1.25;
 
 // UI
 const TITLE_ANIM_SPEED = 0.1;
-const TITLE_WOBBLE = 0.016;
-const TITLE_SCALE = 0.02;
+const TITLE_WOBBLE = 0.025;
+const TITLE_SCALE = 0.03;
 
 const LENGTH_TEXT_HEIGHT = 80;
 const LENGTH_FONT_SIZE = 30;
@@ -95,8 +95,8 @@ const worldSizePresets = {
         bots: 99,
     },
     "huge": {
-        radius: 5000,
-        orbs: 2000,
-        bots: 299,
+        radius: 3000,
+        orbs: 1000,
+        bots: 199,
     }
 }
