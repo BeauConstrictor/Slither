@@ -42,14 +42,14 @@ function snakeRadius(length) {
 }
 
 // ORBS
-const ORB_COUNT = 700;
 const EAT_DISTANCE = 100
 const ORB_SIZE = { min: 5, max: 20 };
 const SHAKE_SIZE = 20;
 const SHAKE_SPEED = 2;
 
 // AI
-const BOT_COUNT = 99;
+const MIN_INITIAL_BOT_PLAYER_DIST = 300;
+const MAX_SPAWN_RETRIES = 200;
 const BOT_TURN_SPEED = 4.2;
 const BOT_ORB_ATTRACT = 0.32;
 const BOT_ORB_ATTRACT_FAR = 0.08;
