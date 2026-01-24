@@ -3,7 +3,7 @@ class Wall {
     constructor(game) {
         this.game = game;
 
-        this.radius = WORLD_RADIUS * 2.5;
+        this.radius = this.game.worldRadius * 2.5;
     }
 
     snakeStep(snake) {

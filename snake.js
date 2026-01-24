@@ -2,8 +2,8 @@ class Snake {
     constructor(game) {
         this.game = game;
 
-        const startX = clamp(signedGaussRand(0, WORLD_RADIUS), -WORLD_RADIUS, WORLD_RADIUS);
-        const startY = clamp(signedGaussRand(0, WORLD_RADIUS), -WORLD_RADIUS, WORLD_RADIUS);
+        const startX = clamp(signedGaussRand(0, this.game.worldRadius), -this.game.worldRadius, this.game.worldRadius);
+        const startY = clamp(signedGaussRand(0, this.game.worldRadius), -this.game.worldRadius, this.game.worldRadius);
 
         this.segments = [];
         for (let i = 0; i < INITIAL_LENGTH; i++) {
@@ -385,12 +385,13 @@ class BotSnake extends Snake {
         }
 
         const distFromCenter = Math.hypot(head.x, head.y);
-        const REAL_EDGE_RADIUS = WORLD_RADIUS * 2.5;
+        const REAL_EDGE_RADIUS = this.game.worldRadius * 2.5;
 
-        if (distFromCenter > BOT_EDGE_BUFFER) {
+        const edge = this.game.worldRadius * 2.5 * BOT_EDGE_BUFFER;
+        if (distFromCenter > edge) {
             const toCenter = Math.atan2(-head.y, -head.x);
-            const t = (distFromCenter - BOT_EDGE_BUFFER) /
-                (REAL_EDGE_RADIUS - BOT_EDGE_BUFFER);
+            const t = (distFromCenter - edge) /
+                (REAL_EDGE_RADIUS - edge);
 
             desired = lerpAngle(
                 desired,

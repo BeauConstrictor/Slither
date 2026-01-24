@@ -8,12 +8,9 @@ class Game {
         this.input = new Input(this);
 
         this.bg = new Background(this);
-        this.wall = new Wall(this);
         this.player = new PlayerSnake(this);
         this.bots = [];
-        for (let i = 0; i < BOT_COUNT; i++) this.bots.push(new BotSnake(this));
         this.orbs = [];
-        for (let i = 0; i < ORB_COUNT; i++) this.orbs.push(new Orb(this));
         this.ui = new UserInterface(this);
 
         this.lastFrame = null;
@@ -98,15 +95,24 @@ class Game {
     }
 
     start() {
+        const sizeBtns = document.querySelectorAll("#world-sizes button");
+        const playBtn = document.querySelector("#enter-key");
+
         this.resizeCanvas();
 
         let gameStarted = false;
         let titleFrame = 0;
-        let lastTime;
         const titleL = new Image();
         titleL.src = 'assets/title-l.png';
         let titleLLoaded = false;
         titleL.onload = () => titleLLoaded = true;
+
+        let worldSizePreset = "normal";
+        sizeBtns.forEach((btn) => btn.addEventListener("click", () => {
+            sizeBtns.forEach((btn2) => btn2.classList.remove("active"));
+            btn.classList.add("active");
+            worldSizePreset = btn.innerHTML.toLowerCase();
+        }));
 
         const showTitle = () => {
             if (gameStarted) return;
@@ -122,7 +128,7 @@ class Game {
             ctx.fillStyle = "#cdd6f4";
             ctx.textAlign = "left";
             ctx.fillText("Welcome to", centerX - 190,
-                centerY - 78);
+                centerY - 25);
 
             const rotation = Math.sin(titleFrame * TITLE_ANIM_SPEED) * TITLE_WOBBLE;
             const scale = 1 + Math.sin(titleFrame * TITLE_ANIM_SPEED + Math.PI / 2) * TITLE_SCALE;
@@ -135,14 +141,14 @@ class Game {
             ctx.font = `bold 100px "Atma", monospace`;
             ctx.fillStyle = "#cdd6f4";
             ctx.textAlign = "center";
-            ctx.fillText("S  ITHER", 0, 3.2);
+            ctx.fillText("S  ITHER", 0, 70);
 
             if (titleLLoaded) {
                 const imgScale = 0.5;
                 ctx.drawImage(
                     titleL,
                     -270,
-                    -53,
+                    -6,
                     titleL.width * imgScale,
                     titleL.height * imgScale * 0.8
                 );
@@ -150,29 +156,32 @@ class Game {
 
             ctx.restore();
 
-            ctx.font = `bold 24px "JetBrains Mono", monospace`;
-            ctx.fillStyle = "#cdd6f4";
-            ctx.textAlign = "left";
-            ctx.fillText("Press       to play.", centerX - 190,
-                centerY + 60);
-            drawKey(ctx, centerX - 105, centerY + 42, "Enter", 75);
-
             titleFrame += 1;
             setTimeout(showTitle, 48);
         }
         showTitle();
 
-
         const startGame = (event) => {
             if (event.key == "Enter") {
                 gameStarted = true;
-                playSfx("hitHurt");
+
+                sizeBtns.forEach(btn => btn.remove());
+                playBtn.remove();
+                
+                const preset = worldSizePresets[worldSizePreset];
+                this.worldRadius = preset.radius;
+                this.player = new PlayerSnake(this);
+                this.wall = new Wall(this);
+                for (let i = 0; i < preset.bots; i++) this.bots.push(new BotSnake(this));
+                for (let i = 0; i < preset.orbs; i++) this.orbs.push(new Orb(this));
+
                 requestAnimationFrame(game.frame);
             } else {
                 window.addEventListener("keydown", startGame, { once: true });
             }
         }
         window.addEventListener("keydown", startGame, { once: true });
+        playBtn.addEventListener("click", () => startGame({ key: "Enter" }));
     }
 }
 

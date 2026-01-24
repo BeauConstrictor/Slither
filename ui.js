@@ -47,7 +47,7 @@ class UserInterface {
   }
 
   drawMinimap() {
-    const mmScale = MINIMAP_RADIUS / WORLD_RADIUS / 2.5;
+    const mmScale = MINIMAP_RADIUS / this.game.worldRadius / 2.5;
     const mmX = canvas.width - MINIMAP_RADIUS - MINIMAP_PADDING;
     const mmY = canvas.height - MINIMAP_RADIUS - MINIMAP_PADDING;
 
@@ -58,7 +58,7 @@ class UserInterface {
 
     for (let orb of this.game.orbs) {
       const distSq = orb.x * orb.x + orb.y * orb.y;
-      const maxDist = WORLD_RADIUS * 2.5 - orb.radius;
+      const maxDist = this.game.worldRadius * 2.5 - orb.radius;
 
       if (distSq >= maxDist * maxDist) continue;
 
@@ -75,7 +75,7 @@ class UserInterface {
     const snakes = [...this.game.bots, this.game.player];
     for (let snake of snakes) {
       const distSq = snake.head.x ** 2 + snake.head.y ** 2;
-      const maxDist = WORLD_RADIUS * 2.5 - MINIMAP_BOT_SPOT_SIZE;
+      const maxDist = this.game.worldRadius * 2.5 - MINIMAP_BOT_SPOT_SIZE;
 
       if (distSq >= maxDist ** 2) continue;
 

@@ -1,6 +1,5 @@
 // MAP
 const TILE = "./assets/bg.png";
-const WORLD_RADIUS = 2000;
 const SIM_SPEED = 1;
 const ZOOM_SPEED_BOOST = 2;
 
@@ -60,7 +59,7 @@ const BOT_REPEL_EXPONENT = 2.8;
 const BOT_SEGMENT_SKIP = 2;
 const BOT_NOISE_SWAY = 0.16;
 const BOT_NOISE_SCALE = 0.09;
-const BOT_EDGE_BUFFER = WORLD_RADIUS * 2.3;
+const BOT_EDGE_BUFFER = 0.9;
 const BOT_EDGE_FORCE = 1.4;
 const BOT_AGGRESSION = 1.25;
 
@@ -81,3 +80,23 @@ const PAUSE_ICON_HEIGHT = 80;
 const MINIMAP_PADDING = 50;
 const MINIMAP_RADIUS = 100;
 const MINIMAP_BOT_SPOT_SIZE = 80;
+
+// Presets
+
+const worldSizePresets = {
+    "tiny": {
+        radius: 800,
+        orbs: 200,
+        bots: 39,
+    },
+    "normal": {
+        radius: 2000,
+        orbs: 700,
+        bots: 99,
+    },
+    "huge": {
+        radius: 5000,
+        orbs: 2000,
+        bots: 299,
+    }
+}

@@ -17,8 +17,8 @@ class Orb {
             return
         }
 
-        this.x = signedGaussRand(0, WORLD_RADIUS);
-        this.y = signedGaussRand(0, WORLD_RADIUS);
+        this.x = signedGaussRand(0, this.game.worldRadius);
+        this.y = signedGaussRand(0, this.game.worldRadius);
         this.radius = randomInt(ORB_SIZE.min, ORB_SIZE.max);
 
         const primaryRgb = PALETTE[Math.floor(Math.random() * PALETTE.length)];
