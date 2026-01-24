@@ -59,7 +59,7 @@ const BOT_REPEL_EXPONENT = 2.8;
 const BOT_SEGMENT_SKIP = 2;
 const BOT_NOISE_SWAY = 0.16;
 const BOT_NOISE_SCALE = 0.09;
-const BOT_EDGE_BUFFER = 0.9;
+const BOT_EDGE_BUFFER = 0.8;
 const BOT_EDGE_FORCE = 1.4;
 const BOT_AGGRESSION = 1.25;
 

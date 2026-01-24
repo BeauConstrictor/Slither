@@ -95,6 +95,7 @@ class Game {
     }
 
     start() {
+        const allBtns = document.querySelector("#buttons");
         const sizeBtns = document.querySelectorAll("#world-sizes button");
         const playBtn = document.querySelector("#enter-key");
 
@@ -107,11 +108,12 @@ class Game {
         let titleLLoaded = false;
         titleL.onload = () => titleLLoaded = true;
 
-        let worldSizePreset = "normal";
+        let worldSizePreset = localStorage.getItem("worldSize") || "normal";
         sizeBtns.forEach((btn) => btn.addEventListener("click", () => {
             sizeBtns.forEach((btn2) => btn2.classList.remove("active"));
             btn.classList.add("active");
             worldSizePreset = btn.innerHTML.toLowerCase();
+            localStorage.setItem("worldSize", worldSizePreset);
         }));
 
         const showTitle = () => {
@@ -165,8 +167,7 @@ class Game {
             if (event.key == "Enter") {
                 gameStarted = true;
 
-                sizeBtns.forEach(btn => btn.remove());
-                playBtn.remove();
+                allBtns.remove();
                 
                 const preset = worldSizePresets[worldSizePreset];
                 this.worldRadius = preset.radius;

@@ -27,6 +27,9 @@ html, body {
     cursor: pointer;
     transition: 100ms background-color;
 }
+#buttons button:hover {
+    background-color: #7f849c;
+}
 
 #world-sizes button:first-child {
     border-top-right-radius: 0;
