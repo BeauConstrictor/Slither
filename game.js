@@ -143,7 +143,7 @@ class Game {
             ctx.save();
             ctx.translate(centerX, centerY);
 
-            ctx.fillText("Welcome to", -190, -25);
+            ctx.fillText("Welcome to", -190, -55);
 
             ctx.scale(scale, scale);
             ctx.rotate(rotation);
@@ -151,14 +151,14 @@ class Game {
             ctx.font = `bold 100px "Atma", monospace`;
             ctx.fillStyle = "#cdd6f4";
             ctx.textAlign = "center";
-            ctx.fillText("S  ITHER", 0, 70);
+            ctx.fillText("S  ITHER", 0, 40);
 
             if (titleLLoaded) {
                 const imgScale = 0.5;
                 ctx.drawImage(
                     titleL,
                     -270,
-                    -6,
+                    -36,
                     titleL.width * imgScale,
                     titleL.height * imgScale * 0.8
                 );
