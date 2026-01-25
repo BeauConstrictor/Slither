@@ -114,13 +114,34 @@ class Snake {
         }
     }
 
-    step() {
-        if (this.dead) return;
+    moveHead(targetVec, speed) {
+        const turnRate = TURN_SPEED * this.game.dt;
+        this.lastTarget = targetVec;
+        const target = Math.atan2(targetVec.y, targetVec.x);
+        this.heading = lerpAngle(this.heading, target, turnRate);
+        this.head.x += Math.cos(this.heading) * speed;
+        this.head.y += Math.sin(this.heading) * speed;
+    }
 
-        let targetVec = this.target();
-        this.boost = targetVec.boost;
-        targetVec = normalise(targetVec, 1);
+    moveTail(speed) {
+        for (let i = 1; i < this.length; i++) {
+            const p = this.segments[i];
 
+            const front = this.segments[i - 1];
+            const dx = front.x - p.x;
+            const dy = front.y - p.y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+
+            if (distance <= SPACING) continue;
+            const moveDistance = Math.min(speed, distance - SPACING);
+            const move = normalise({ x: dx, y: dy }, moveDistance);
+
+            p.x += move.x;
+            p.y += move.y;
+        }
+    }
+
+    potentiallyBoost() {
         let speed;
         if (this.boost) {
             speed = BOOST_SPEED * this.game.dt;
@@ -138,33 +159,19 @@ class Snake {
             speed = SPEED * this.game.dt;
             this.boostTime = 0;
         }
+        return speed;
+    }
 
-        const turnRate = TURN_SPEED * this.game.dt;
+    step() {
+        if (this.dead) return;
 
-        const head = this.head;
+        let targetVec = this.target();
+        this.boost = targetVec.boost;
+        targetVec = normalise(targetVec, 1);
 
-        this.lastTarget = targetVec;
-        const target = Math.atan2(targetVec.y, targetVec.x);
-        this.heading = lerpAngle(this.heading, target, turnRate);
-        head.x += Math.cos(this.heading) * speed;
-        head.y += Math.sin(this.heading) * speed;
-
-        for (let i = 1; i < this.length; i++) {
-            const p = this.segments[i];
-
-            const front = this.segments[i - 1];
-            const dx = front.x - p.x;
-            const dy = front.y - p.y;
-            const distance = Math.sqrt(dx * dx + dy * dy);
-
-            if (distance <= SPACING) continue;
-            const moveDistance = Math.min(speed, distance - SPACING);
-            const move = normalise({ x: dx, y: dy }, moveDistance);
-
-            p.x += move.x;
-            p.y += move.y;
-        }
-
+        const speed = this.potentiallyBoost();
+        this.moveHead(targetVec, speed);
+        this.moveTail(speed);
         this.checkPlayerBotCollisions();
     }
 
