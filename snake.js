@@ -19,13 +19,13 @@ class Snake {
     }
 
     initPos() {
-        let dist = this.game.worldRadius*2;
+        let dist = this.game.worldRadius * 2;
         let retries = 0;
-        while (dist >= this.game.worldRadius*2 &&
-               retries < MAX_SPAWN_RETRIES) {
+        while (dist >= this.game.worldRadius * 2 &&
+            retries < MAX_SPAWN_RETRIES) {
             const startX = signedGaussRand(0, this.game.worldRadius);
             const startY = signedGaussRand(0, this.game.worldRadius);
-            
+
             this.segments = [];
             for (let i = 0; i < INITIAL_LENGTH; i++) {
                 this.segments.push({
@@ -33,9 +33,9 @@ class Snake {
                     y: startY + i * SPACING,
                 });
             }
-            retries ++;
+            retries++;
 
-            dist = Math.sqrt(this.head.x**2 + this.head.y**2);
+            dist = Math.sqrt(this.head.x ** 2 + this.head.y ** 2);
         }
     }
 
@@ -48,7 +48,7 @@ class Snake {
             for (let _ = 0; _ < 3; _++) {
                 const ox = Math.random() * 30;
                 const oy = Math.random() * 30;
-                this.game.orbs.push(new Orb(this.game, s.x+ox, s.y+oy));
+                this.game.orbs.push(new Orb(this.game, s.x + ox, s.y + oy));
             }
         }
         this.dead = true;
@@ -319,12 +319,12 @@ class BotSnake extends Snake {
         let dist = 0;
         let retries = 0;
         while (dist < MIN_INITIAL_BOT_PLAYER_DIST &&
-               retries < MAX_SPAWN_RETRIES) {
+            retries < MAX_SPAWN_RETRIES) {
             this.initPos();
             const dx = this.head.x - game.player.head.x;
             const dy = this.head.y - game.player.head.y;
-            dist = Math.sqrt(dx**2 + dy**2);
-            retries ++;
+            dist = Math.sqrt(dx ** 2 + dy ** 2);
+            retries++;
         }
     }
 

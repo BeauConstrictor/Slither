@@ -87,7 +87,7 @@ const worldSizePresets = {
     "tiny": {
         radius: 800,
         orbs: 200,
-        bots: 39,
+        bots: 29,
     },
     "normal": {
         radius: 2000,

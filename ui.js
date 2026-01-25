@@ -134,8 +134,8 @@ class UserInterface {
       ctx.fillText("GAME OVER", centerX, centerY);
 
       ctx.font = `bold 20px "JetBrains Mono", monospace`;
-      ctx.fillText("Press", centerX-47, centerY + 54);
-      drawKey(ctx, centerX-6.5, centerY+35, "Enter", 70);
+      ctx.fillText("Press", centerX-47, centerY + 64);
+      drawKey(ctx, centerX-6.5, centerY+45, "Enter", 70);
     } else if (this.game.paused) {
       ctx.fillStyle = "#cdd6f4";
       ctx.fillRect(
