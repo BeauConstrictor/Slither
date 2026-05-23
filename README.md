@@ -6,7 +6,7 @@
 
 Slither is a barebones static slither.io demake where you play against
 bots. If you want to host this game locally, just clone the repo
-and open `index.html` in your browser
+and open `index.html` in your browser.
 
 ## License
 
